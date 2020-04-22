@@ -10,7 +10,7 @@ app.use(index);
 app.get('/', (req, res) => {
     res.send('public');
 })
-var port = process.env.PORT || 3000;
+var port = process.env.PORT || 4001;
 
 var server = http.listen(port, function () {
     console.log("Listening at port: " + port);
@@ -18,8 +18,11 @@ var server = http.listen(port, function () {
 
 const io = socket(server);
 
-io.on('connection', () => {
-    console.log('Listening at : ', Port);
+io.on('connection', (socket) => {
+    console.log('Connected : ', port);
+    socket.on('connection', (data) => {
+        console.log(socket.id, data);
+    })
 })
 
 

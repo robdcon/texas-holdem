@@ -8,6 +8,7 @@ function App() {
 
   useEffect(() => {
     const socket = socketIOClient(ENDPOINT);
+    socket.emit('connected', 'Conneceted');
     socket.on('message', (data) => {
       setResponse(data);
     })
@@ -15,6 +16,7 @@ function App() {
 
   return (
     <div className="App">
+      <h1>Texas Holdem</h1>
      {response}
     </div>
   );
